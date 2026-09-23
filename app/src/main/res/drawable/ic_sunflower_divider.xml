@@ -1,0 +1,54 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="20dp"
+    android:viewportWidth="240"
+    android:viewportHeight="24">
+
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="@color/coffee_mocha_500"
+        android:strokeWidth="1.5"
+        android:pathData="M0,12H104" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="@color/coffee_mocha_500"
+        android:strokeWidth="1.5"
+        android:pathData="M136,12H240" />
+
+    <group android:pivotX="120" android:pivotY="12" android:rotation="0">
+        <path android:fillColor="@color/sunflower_yellow_500"
+            android:pathData="M120,12C118,9 118,5 120,3C122,5 122,9 120,12Z" />
+    </group>
+    <group android:pivotX="120" android:pivotY="12" android:rotation="45">
+        <path android:fillColor="@color/sunflower_yellow_500"
+            android:pathData="M120,12C118,9 118,5 120,3C122,5 122,9 120,12Z" />
+    </group>
+    <group android:pivotX="120" android:pivotY="12" android:rotation="90">
+        <path android:fillColor="@color/sunflower_yellow_500"
+            android:pathData="M120,12C118,9 118,5 120,3C122,5 122,9 120,12Z" />
+    </group>
+    <group android:pivotX="120" android:pivotY="12" android:rotation="135">
+        <path android:fillColor="@color/sunflower_yellow_500"
+            android:pathData="M120,12C118,9 118,5 120,3C122,5 122,9 120,12Z" />
+    </group>
+    <group android:pivotX="120" android:pivotY="12" android:rotation="180">
+        <path android:fillColor="@color/sunflower_yellow_500"
+            android:pathData="M120,12C118,9 118,5 120,3C122,5 122,9 120,12Z" />
+    </group>
+    <group android:pivotX="120" android:pivotY="12" android:rotation="225">
+        <path android:fillColor="@color/sunflower_yellow_500"
+            android:pathData="M120,12C118,9 118,5 120,3C122,5 122,9 120,12Z" />
+    </group>
+    <group android:pivotX="120" android:pivotY="12" android:rotation="270">
+        <path android:fillColor="@color/sunflower_yellow_500"
+            android:pathData="M120,12C118,9 118,5 120,3C122,5 122,9 120,12Z" />
+    </group>
+    <group android:pivotX="120" android:pivotY="12" android:rotation="315">
+        <path android:fillColor="@color/sunflower_yellow_500"
+            android:pathData="M120,12C118,9 118,5 120,3C122,5 122,9 120,12Z" />
+    </group>
+
+    <path
+        android:fillColor="@color/coffee_espresso_900"
+        android:pathData="M117,12A3,3 0 1,1 123,12A3,3 0 1,1 117,12Z" />
+</vector>

@@ -2,4 +2,26 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Coffee-shop palette -->
+    <color name="coffee_espresso_900">#3B2519</color>
+    <color name="coffee_espresso_950">#241712</color>
+    <color name="coffee_mocha_700">#6F4E37</color>
+    <color name="coffee_mocha_500">#8B6A4F</color>
+    <color name="coffee_caramel_500">#C68B59</color>
+    <color name="coffee_cream_50">#FFFDF8</color>
+    <color name="coffee_cream_100">#FBF3E7</color>
+    <color name="coffee_cream_200">#F3E4CF</color>
+    <color name="coffee_background_dark">#1C120D</color>
+    <color name="sunflower_yellow_500">#E8A93A</color>
+    <color name="sunflower_yellow_700">#C9891C</color>
+    <color name="sage_green_500">#8A9B6E</color>
+
+    <!-- Placeholder swatch rotation for products/avatars -->
+    <color name="swatch_1">@color/coffee_mocha_500</color>
+    <color name="swatch_2">@color/coffee_caramel_500</color>
+    <color name="swatch_3">@color/sunflower_yellow_500</color>
+    <color name="swatch_4">@color/sage_green_500</color>
+    <color name="swatch_5">@color/coffee_espresso_900</color>
+    <color name="swatch_6">@color/coffee_mocha_700</color>
 </resources>

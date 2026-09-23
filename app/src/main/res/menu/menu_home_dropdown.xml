@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/dropdown_about_us"
+        android:title="@string/dropdown_about_us" />
+    <item
+        android:id="@+id/dropdown_menu"
+        android:title="@string/dropdown_menu" />
+    <item
+        android:id="@+id/dropdown_team"
+        android:title="@string/dropdown_team" />
+    <item
+        android:id="@+id/dropdown_merch"
+        android:title="@string/dropdown_merch" />
+</menu>
