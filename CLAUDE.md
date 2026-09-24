@@ -4,15 +4,21 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Android app "Jojo's Cup Of Jo" — a single-module Gradle project (`:app`) currently at the Android Studio
-template stage: one `MainActivity`, a Hello World layout, and the two example tests. Package/namespace is
-`com.example.jojos_cup_of_jo`.
+Android app "Jojo's Cup Of Jo" — a coffee shop app, single-module Gradle project (`:app`). Five
+bottom-nav tabs: Home, Menu, Merch, Team, Cart. Package/namespace is `com.example.jojos_cup_of_jo`.
+
+<!-- TODO: describe the product intent — who this is for, what a customer is meant to do with it. -->
+
+Planned beyond this app: a web version and an in-store desktop POS, all three eventually sharing one
+server-side database (sales, inventory, employees). Nothing in this repo talks to a network yet —
+all content comes from `data/SampleDataProvider`.
+
+<!-- TODO: link the database schema here once it's typed up. -->
 
 ## Commands
 
 All commands run from the project directory (`~/AndroidStudioProjects/Jojos_Cup_Of_Jo`) via the
-wrapper. Note this directory is **not** its own git repo — the enclosing repo is `/Users/rene`, and
-no file in this project is tracked in it, so `git log` here shows unrelated home-directory history.
+wrapper. This directory is its own git repo, pushed to `github.com/ReneG18/Jojos_Cup_Of_Jo`.
 
 ```bash
 ./gradlew assembleDebug          # build debug APK
@@ -26,7 +32,7 @@ no file in this project is tracked in it, so `git log` here shows unrelated home
 Single unit test:
 
 ```bash
-./gradlew testDebugUnitTest --tests 'com.example.jojos_cup_of_jo.ExampleUnitTest.addition_isCorrect'
+./gradlew testDebugUnitTest --tests 'com.example.jojos_cup_of_jo.data.CartRepositoryTest'
 ```
 
 Single instrumented test:
@@ -55,11 +61,63 @@ referenced as `libs.*` — add them there, never as inline coordinate strings in
 `dependencyResolutionManagement` is `FAIL_ON_PROJECT_REPOS`, so repositories can only be declared in
 `settings.gradle.kts`.
 
+## Architecture
+
+```
+com/example/jojos_cup_of_jo/
+├── MainActivity.java          — hosts the 5 tabs, implements TabHost
+├── data/
+│   ├── SampleDataProvider.java  — all app content, hardcoded (the seam for a real data source)
+│   └── CartRepository.java      — in-memory cart singleton
+├── model/                     — Product, CartItem, TeamMember, StoreInfo + two enums
+└── ui/
+    ├── TabHost.java           — interface letting a Fragment request a tab switch
+    ├── home/, product/, team/, cart/, util/
+```
+
+**Navigation is hand-rolled, not Jetpack Navigation.** `MainActivity` holds a static
+`LinkedHashMap<Integer, Supplier<Fragment>>` of tab id → fragment factory, `add`s all five fragments
+once, then toggles them with `hide()`/`show()`. Consequences worth knowing:
+
+- Fragments are **never destroyed on tab switch**, so `onViewCreated` runs once per app launch. Data
+  edits in `SampleDataProvider` need a full app restart to show, not just a tab switch.
+- Data loading is **synchronous on the main thread**. Fine while content is hardcoded; it is the thing
+  to fix first when a real data source arrives.
+- A fragment requests a tab switch via the `TabHost` interface (`HomeFragment`'s seasonal cards,
+  `CartFragment`'s empty-state CTA) rather than depending on `MainActivity` directly.
+
+`SampleDataProvider` is a static utility with no state and no `Context`; every method rebuilds its list
+from literals. `CartRepository` is a process-lifetime static singleton with a hand-rolled listener list
+(`CartListener`) — **no persistence at all**, so closing the app loses the cart. It deliberately imports
+nothing from `android.*` so it stays host-unit-testable.
+
+**No ViewModels, no LiveData, no `androidx.lifecycle`** anywhere yet.
+
+### Menu and Merch lists
+
+Both tabs are the same `ProductListFragment`, switched by a `ProductType` in a fragment argument.
+`ProductSections.build()` turns a flat product list into headed sections — seasonal items first, then
+one section per `ProductCategory`, in first-appearance order — and `ProductAdapter` renders the result
+as two view types (`ProductListRow.TYPE_HEADER` / `TYPE_PRODUCT`).
+
+A product is featured on Home by setting `seasonal = true` on it in `SampleDataProvider`; the Home
+getters find it by that flag rather than duplicating the literal. Home hides the card if nothing is
+marked seasonal.
+
+<!-- TODO: note anything about Cart/checkout flow worth remembering. -->
+
 ## UI stack
 
-Classic **Views + XML**, not Compose: ConstraintLayout inside `app/src/main/res/layout/`, themed with
-`Theme.Material3.DayNight.NoActionBar` (light in `values/themes.xml`, dark override in
-`values-night/themes.xml`). `MainActivity` extends `AppCompatActivity`.
+Classic **Views + XML**, not Compose: ConstraintLayout/LinearLayout inside `app/src/main/res/layout/`,
+themed with `Theme.Material3.DayNight.NoActionBar` (light in `values/themes.xml`, dark override in
+`values-night/themes.xml`). `MainActivity` extends `AppCompatActivity`. **ViewBinding** is enabled
+(`buildFeatures { viewBinding = true }`) and used by every fragment and adapter; fragments null out
+`binding` in `onDestroyView`.
+
+Products render as a colored swatch plus initials via `ui/util/PlaceholderStyle` rather than real
+imagery. The one exception is `drawable-nodpi/photo_pumpkin_spice_latte.jpg` on the Home seasonal card.
+
+<!-- TODO: if you add real product photos, say where they live and how they're keyed to products. -->
 
 Sources are **Java**; no Kotlin plugin is applied, so a `.kt` file will not compile until
 `org.jetbrains.kotlin.android` is added to the catalog and to `app/build.gradle.kts`. (`activity-ktx` is
@@ -75,5 +133,8 @@ is not declared directly.
 
 ## Naming quirk
 
-The display name and Gradle root project name are `Jojo's_Cup_Of_Jo` — the apostrophe must stay escaped
-(`\'`) in both `settings.gradle.kts` and `res/values/strings.xml`.
+The Gradle root project name is `Jojo\'s_Cup_Of_Jo` (underscores) while the user-facing `app_name` in
+`res/values/strings.xml` is `Jojo\'s Cup Of Jo` (spaces). These deliberately differ — don't "fix" one
+to match the other. The apostrophe must stay escaped (`\'`) in both files.
+
+<!-- TODO: anything else future-you will forget — conventions, gotchas, things you tried that didn't work. -->

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,14 +14,10 @@ import androidx.fragment.app.Fragment;
 import com.example.jojos_cup_of_jo.R;
 import com.example.jojos_cup_of_jo.data.SampleDataProvider;
 import com.example.jojos_cup_of_jo.databinding.FragmentHomeBinding;
-import com.example.jojos_cup_of_jo.databinding.ItemProductCompactBinding;
 import com.example.jojos_cup_of_jo.model.Product;
 import com.example.jojos_cup_of_jo.model.StoreInfo;
 import com.example.jojos_cup_of_jo.ui.TabHost;
 import com.example.jojos_cup_of_jo.ui.util.PlaceholderStyle;
-
-import java.util.List;
-import java.util.Locale;
 
 public class HomeFragment extends Fragment {
 
@@ -54,15 +49,8 @@ public class HomeFragment extends Fragment {
         bindHoursAndLocation(storeInfo);
         bindThankYouNote(storeInfo);
 
-        populatePreviewStrip(binding.menuPreviewContainer, SampleDataProvider.getMenuProducts(),
-                4, R.id.nav_menu);
-        populatePreviewStrip(binding.merchPreviewContainer, SampleDataProvider.getMerchProducts(),
-                4, R.id.nav_merch);
-
-        binding.viewFullMenuButton.setOnClickListener(v -> requestTab(R.id.nav_menu));
-        binding.shopMerchButton.setOnClickListener(v -> requestTab(R.id.nav_merch));
-
-        binding.exploreButton.setOnClickListener(this::showExploreMenu);
+        bindSeasonalDrink(SampleDataProvider.getSeasonalDrink());
+        bindSeasonalMerchItem(SampleDataProvider.getSeasonalMerchItem());
     }
 
     private void bindAboutUsAndStory(StoreInfo storeInfo) {
@@ -86,56 +74,26 @@ public class HomeFragment extends Fragment {
         binding.thankYouNote.setText(storeInfo.getThankYouNote());
     }
 
-    private void populatePreviewStrip(ViewGroup container, List<Product> products, int limit,
-                                       int targetTabId) {
-        container.removeAllViews();
-        int count = Math.min(limit, products.size());
-        for (int i = 0; i < count; i++) {
-            Product product = products.get(i);
-            ItemProductCompactBinding itemBinding = ItemProductCompactBinding.inflate(
-                    LayoutInflater.from(requireContext()), container, false);
-
-            itemBinding.compactName.setText(product.getName());
-            itemBinding.compactPrice.setText(
-                    String.format(Locale.US, "$%.2f", product.getPrice()));
-            itemBinding.compactInitials.setText(PlaceholderStyle.initialsFor(product.getName()));
-            PlaceholderStyle.applySwatchTint(itemBinding.compactSwatch, product.getSwatchIndex());
-
-            itemBinding.getRoot().setOnClickListener(v -> requestTab(targetTabId));
-
-            container.addView(itemBinding.getRoot());
-        }
-    }
-
-    private void showExploreMenu(View anchor) {
-        PopupMenu popupMenu = new PopupMenu(requireContext(), anchor);
-        popupMenu.inflate(R.menu.menu_home_dropdown);
-        popupMenu.setOnMenuItemClickListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.dropdown_about_us) {
-                scrollToAboutUs();
-                return true;
-            } else if (itemId == R.id.dropdown_menu) {
-                requestTab(R.id.nav_menu);
-                return true;
-            } else if (itemId == R.id.dropdown_team) {
-                requestTab(R.id.nav_team);
-                return true;
-            } else if (itemId == R.id.dropdown_merch) {
-                requestTab(R.id.nav_merch);
-                return true;
-            }
-            return false;
-        });
-        popupMenu.show();
-    }
-
-    private void scrollToAboutUs() {
-        if (binding == null) {
+    private void bindSeasonalDrink(@Nullable Product product) {
+        if (product == null) {
+            binding.sectionSeasonalDrink.setVisibility(View.GONE);
             return;
         }
-        binding.homeScrollView.post(() ->
-                binding.homeScrollView.smoothScrollTo(0, binding.sectionAboutUs.getTop()));
+        binding.seasonalDrinkName.setText(product.getName());
+        binding.seasonalDrinkDescription.setText(product.getDescription());
+        binding.seasonalDrinkCard.setOnClickListener(v -> requestTab(R.id.nav_menu));
+    }
+
+    private void bindSeasonalMerchItem(@Nullable Product product) {
+        if (product == null) {
+            binding.sectionSeasonalMerch.setVisibility(View.GONE);
+            return;
+        }
+        binding.seasonalMerchName.setText(product.getName());
+        binding.seasonalMerchDescription.setText(product.getDescription());
+        binding.seasonalMerchInitials.setText(PlaceholderStyle.initialsFor(product.getName()));
+        PlaceholderStyle.applySwatchTint(binding.seasonalMerchSwatch, product.getSwatchIndex());
+        binding.seasonalMerchCard.setOnClickListener(v -> requestTab(R.id.nav_merch));
     }
 
     private void requestTab(int tabId) {

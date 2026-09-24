@@ -7,42 +7,70 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.jojos_cup_of_jo.databinding.ItemProductBinding;
+import com.example.jojos_cup_of_jo.databinding.ItemProductSectionHeaderBinding;
 import com.example.jojos_cup_of_jo.model.Product;
 import com.example.jojos_cup_of_jo.ui.util.PlaceholderStyle;
 
 import java.util.List;
 import java.util.Locale;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
+public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public interface OnAddToCartListener {
         void onAddToCart(Product product);
     }
 
-    private final List<Product> products;
+    private final List<ProductListRow> rows;
     private final OnAddToCartListener listener;
 
-    public ProductAdapter(List<Product> products, OnAddToCartListener listener) {
-        this.products = products;
+    public ProductAdapter(List<ProductListRow> rows, OnAddToCartListener listener) {
+        this.rows = rows;
         this.listener = listener;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return rows.get(position).getType();
     }
 
     @NonNull
     @Override
-    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemProductBinding binding = ItemProductBinding.inflate(
-                LayoutInflater.from(parent.getContext()), parent, false);
-        return new ProductViewHolder(binding);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        if (viewType == ProductListRow.TYPE_HEADER) {
+            return new HeaderViewHolder(
+                    ItemProductSectionHeaderBinding.inflate(inflater, parent, false));
+        }
+        return new ProductViewHolder(ItemProductBinding.inflate(inflater, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-        holder.bind(products.get(position), listener);
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        ProductListRow row = rows.get(position);
+        if (holder instanceof HeaderViewHolder) {
+            ((HeaderViewHolder) holder).bind(row.getHeaderRes());
+        } else {
+            ((ProductViewHolder) holder).bind(row.getProduct(), listener);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return products.size();
+        return rows.size();
+    }
+
+    static class HeaderViewHolder extends RecyclerView.ViewHolder {
+
+        private final ItemProductSectionHeaderBinding binding;
+
+        HeaderViewHolder(ItemProductSectionHeaderBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+
+        void bind(int headerRes) {
+            binding.sectionHeader.setText(headerRes);
+        }
     }
 
     static class ProductViewHolder extends RecyclerView.ViewHolder {

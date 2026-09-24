@@ -54,12 +54,13 @@ public class ProductListFragment extends Fragment {
                 : SampleDataProvider.getMerchProducts();
 
         binding.productRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        binding.productRecyclerView.setAdapter(new ProductAdapter(products, product -> {
-            CartRepository.getInstance().addItem(product);
-            Snackbar.make(binding.getRoot(),
-                    getString(R.string.added_to_cart_format, product.getName()),
-                    Snackbar.LENGTH_SHORT).show();
-        }));
+        binding.productRecyclerView.setAdapter(new ProductAdapter(ProductSections.build(products),
+                product -> {
+                    CartRepository.getInstance().addItem(product);
+                    Snackbar.make(binding.getRoot(),
+                            getString(R.string.added_to_cart_format, product.getName()),
+                            Snackbar.LENGTH_SHORT).show();
+                }));
     }
 
     @Override

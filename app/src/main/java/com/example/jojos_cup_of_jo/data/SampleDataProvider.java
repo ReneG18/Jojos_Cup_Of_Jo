@@ -21,6 +21,9 @@ public final class SampleDataProvider {
 
     public static List<Product> getMenuProducts() {
         return new ArrayList<>(Arrays.asList(
+                new Product("menu_pumpkin_spice_latte", "Pumpkin Spice Latte",
+                        "Espresso, steamed milk, real pumpkin & warm autumn spice", 5.25,
+                        ProductType.MENU, ProductCategory.COFFEE, 0, true),
                 new Product("menu_vanilla_latte", "Vanilla Latte",
                         "Espresso, steamed milk, house vanilla syrup", 4.50,
                         ProductType.MENU, ProductCategory.COFFEE, 0),
@@ -53,6 +56,9 @@ public final class SampleDataProvider {
 
     public static List<Product> getMerchProducts() {
         return new ArrayList<>(Arrays.asList(
+                new Product("merch_autumn_scarf", "Autumn Knit Scarf",
+                        "Soft knit scarf in our signature sunflower gold", 28.00,
+                        ProductType.MERCH, ProductCategory.APPAREL, 4, true),
                 new Product("merch_logo_mug", "Jojo's Logo Mug",
                         "Ceramic, 12oz, dishwasher safe", 14.00,
                         ProductType.MERCH, ProductCategory.DRINKWARE, 2),
@@ -72,6 +78,25 @@ public final class SampleDataProvider {
                         "Hard enamel, gold plated backing", 6.00,
                         ProductType.MERCH, ProductCategory.ACCESSORY, 1)
         ));
+    }
+
+    /** The drink Home features, or null if nothing on the menu is currently marked seasonal. */
+    public static Product getSeasonalDrink() {
+        return firstSeasonal(getMenuProducts());
+    }
+
+    /** The merch item Home features, or null if nothing in the merch list is marked seasonal. */
+    public static Product getSeasonalMerchItem() {
+        return firstSeasonal(getMerchProducts());
+    }
+
+    private static Product firstSeasonal(List<Product> products) {
+        for (Product product : products) {
+            if (product.isSeasonal()) {
+                return product;
+            }
+        }
+        return null;
     }
 
     public static List<TeamMember> getTeamMembers() {

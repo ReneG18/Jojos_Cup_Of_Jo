@@ -9,9 +9,16 @@ public class Product {
     private final ProductType type;
     private final ProductCategory category;
     private final int swatchIndex;
+    private final boolean seasonal;
 
     public Product(String id, String name, String description, double price,
                     ProductType type, ProductCategory category, int swatchIndex) {
+        this(id, name, description, price, type, category, swatchIndex, false);
+    }
+
+    public Product(String id, String name, String description, double price,
+                    ProductType type, ProductCategory category, int swatchIndex,
+                    boolean seasonal) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -19,6 +26,7 @@ public class Product {
         this.type = type;
         this.category = category;
         this.swatchIndex = swatchIndex;
+        this.seasonal = seasonal;
     }
 
     public String getId() {
@@ -47,5 +55,10 @@ public class Product {
 
     public int getSwatchIndex() {
         return swatchIndex;
+    }
+
+    /** True for limited-time items, which the Menu and Merch lists surface in their own section. */
+    public boolean isSeasonal() {
+        return seasonal;
     }
 }
