@@ -34,6 +34,8 @@
     <!-- Cart -->
     <string name="heading_your_cart">Your Cart</string>
     <string name="subtotal">Subtotal</string>
+    <string name="tax">Tax</string>
+    <string name="total">Total</string>
     <string name="estimated_pickup_time">Estimated pickup time</string>
     <string name="pickup_location">Pickup location</string>
     <string name="confirm_order">Confirm Order</string>

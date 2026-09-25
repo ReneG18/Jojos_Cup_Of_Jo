@@ -125,8 +125,10 @@ public class CartFragment extends Fragment {
 
         showOnly(binding.cartContentGroup);
         binding.cartRecyclerView.setAdapter(new CartAdapter(items, rowActionListener));
-        binding.cartSubtotal.setText(
-                String.format(Locale.US, "$%.2f", CartRepository.getInstance().getSubtotal()));
+        CartRepository repository = CartRepository.getInstance();
+        binding.cartSubtotal.setText(String.format(Locale.US, "$%.2f", repository.getSubtotal()));
+        binding.cartTax.setText(String.format(Locale.US, "$%.2f", repository.getTax()));
+        binding.cartTotal.setText(String.format(Locale.US, "$%.2f", repository.getTotal()));
         binding.cartPickupTime.setText(PickupTimeEstimator.estimateReadyTimeLabel());
     }
 

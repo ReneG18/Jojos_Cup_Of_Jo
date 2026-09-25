@@ -60,6 +60,26 @@ public class CartRepositoryTest {
     }
 
     @Test
+    public void getTax_isSubtotalTimesTaxRate() {
+        CartRepository repository = new CartRepository();
+        Product product = product("a", 10.00);
+
+        repository.addItem(product);
+
+        assertEquals(0.825, repository.getTax(), DELTA);
+    }
+
+    @Test
+    public void getTotal_isSubtotalPlusTax() {
+        CartRepository repository = new CartRepository();
+        Product product = product("a", 10.00);
+
+        repository.addItem(product);
+
+        assertEquals(10.825, repository.getTotal(), DELTA);
+    }
+
+    @Test
     public void removeOneItem_atQuantityOne_removesRowEntirely() {
         CartRepository repository = new CartRepository();
         Product product = product("a", 4.50);

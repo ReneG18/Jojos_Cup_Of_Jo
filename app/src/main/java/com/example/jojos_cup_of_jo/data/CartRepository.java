@@ -27,6 +27,8 @@ public class CartRepository {
         return INSTANCE;
     }
 
+    private static final double TAX_RATE = 0.0825;
+
     private final Map<String, CartItem> itemsByProductId = new LinkedHashMap<>();
     private final List<CartListener> listeners = new ArrayList<>();
     private int nextOrderNumber = 1001;
@@ -86,6 +88,14 @@ public class CartRepository {
             total += item.getLineTotal();
         }
         return total;
+    }
+
+    public double getTax() {
+        return getSubtotal() * TAX_RATE;
+    }
+
+    public double getTotal() {
+        return getSubtotal() + getTax();
     }
 
     public int confirmOrderAndGetOrderNumber() {
