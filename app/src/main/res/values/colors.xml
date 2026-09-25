@@ -19,6 +19,12 @@
     <color name="sage_green_100">#E3E8D5</color>
     <color name="sage_green_800">#3F4B30</color>
 
+    <!-- Filled olive CTA (Confirm Order); overridden in values-night so it stays
+         brighter than the tonal olive buttons in both themes -->
+    <color name="olive_cta_background">@color/sage_green_800</color>
+    <color name="olive_cta_text">@color/coffee_cream_50</color>
+    <color name="olive_cta_ripple">@color/sage_green_500</color>
+
     <!-- Placeholder swatch rotation for products/avatars -->
     <color name="swatch_1">@color/coffee_mocha_500</color>
     <color name="swatch_2">@color/coffee_caramel_500</color>

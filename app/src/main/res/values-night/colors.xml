@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark theme flips the filled olive CTA: the tonal buttons are sage_green_800
+         here, so the CTA takes the lighter sage with dark text to stay the loudest
+         thing on the screen. -->
+    <color name="olive_cta_background">@color/sage_green_500</color>
+    <color name="olive_cta_text">@color/coffee_espresso_900</color>
+    <color name="olive_cta_ripple">@color/sage_green_800</color>
+</resources>

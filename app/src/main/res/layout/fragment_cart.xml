@@ -42,6 +42,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/browse_menu_button"
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_md"
@@ -164,7 +165,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_md"
                 android:text="@string/confirm_order"
-                app:rippleColor="@color/sage_green_500" />
+                android:textColor="@color/olive_cta_text"
+                app:backgroundTint="@color/olive_cta_background"
+                app:rippleColor="@color/olive_cta_ripple" />
 
         </LinearLayout>
 
@@ -202,6 +205,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/start_new_order_button"
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_md"
