@@ -108,8 +108,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:contentDescription="@null"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/photo_pumpkin_spice_latte" />
+                            android:scaleType="centerCrop" />
 
                     </com.google.android.material.card.MaterialCardView>
 
@@ -180,25 +179,21 @@
                     android:orientation="horizontal"
                     android:padding="@dimen/spacing_md">
 
-                    <FrameLayout
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="@dimen/seasonal_image_size"
-                        android:layout_height="@dimen/seasonal_image_size">
+                        android:layout_height="@dimen/seasonal_image_size"
+                        app:cardCornerRadius="@dimen/card_corner_radius"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp">
 
-                        <View
-                            android:id="@+id/seasonal_merch_swatch"
+                        <ImageView
+                            android:id="@+id/seasonal_merch_image"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/bg_placeholder_square" />
+                            android:contentDescription="@null"
+                            android:scaleType="centerCrop" />
 
-                        <TextView
-                            android:id="@+id/seasonal_merch_initials"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textColor="@color/coffee_cream_50"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-                    </FrameLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
                     <LinearLayout
                         android:layout_width="0dp"

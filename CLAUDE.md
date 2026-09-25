@@ -114,8 +114,11 @@ themed with `Theme.Material3.DayNight.NoActionBar` (light in `values/themes.xml`
 (`buildFeatures { viewBinding = true }`) and used by every fragment and adapter; fragments null out
 `binding` in `onDestroyView`.
 
-Products render as a colored swatch plus initials via `ui/util/PlaceholderStyle` rather than real
-imagery. The one exception is `drawable-nodpi/photo_pumpkin_spice_latte.jpg` on the Home seasonal card.
+Products render as real photographs: `ui/util/ProductArt.photoRes()` maps a product id to a 600x600
+JPEG in `res/drawable-nodpi/photo_*.jpg`, shown `centerCrop` inside a `MaterialCardView` so the corners
+match the surrounding cards. Sources and licences are in `PHOTO_CREDITS.md` at the repo root; unknown
+ids fall back to `ic_product_placeholder`. Team avatars still use the colored-swatch-plus-initials
+placeholder from `ui/util/PlaceholderStyle`, which is now that class's only caller.
 
 <!-- TODO: if you add real product photos, say where they live and how they're keyed to products. -->
 

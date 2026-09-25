@@ -17,7 +17,7 @@ import com.example.jojos_cup_of_jo.databinding.FragmentHomeBinding;
 import com.example.jojos_cup_of_jo.model.Product;
 import com.example.jojos_cup_of_jo.model.StoreInfo;
 import com.example.jojos_cup_of_jo.ui.TabHost;
-import com.example.jojos_cup_of_jo.ui.util.PlaceholderStyle;
+import com.example.jojos_cup_of_jo.ui.util.ProductArt;
 
 public class HomeFragment extends Fragment {
 
@@ -81,6 +81,7 @@ public class HomeFragment extends Fragment {
         }
         binding.seasonalDrinkName.setText(product.getName());
         binding.seasonalDrinkDescription.setText(product.getDescription());
+        binding.seasonalDrinkImage.setImageResource(ProductArt.photoRes(product.getId()));
         binding.seasonalDrinkCard.setOnClickListener(v -> requestTab(R.id.nav_menu));
     }
 
@@ -91,8 +92,7 @@ public class HomeFragment extends Fragment {
         }
         binding.seasonalMerchName.setText(product.getName());
         binding.seasonalMerchDescription.setText(product.getDescription());
-        binding.seasonalMerchInitials.setText(PlaceholderStyle.initialsFor(product.getName()));
-        PlaceholderStyle.applySwatchTint(binding.seasonalMerchSwatch, product.getSwatchIndex());
+        binding.seasonalMerchImage.setImageResource(ProductArt.photoRes(product.getId()));
         binding.seasonalMerchCard.setOnClickListener(v -> requestTab(R.id.nav_merch));
     }
 

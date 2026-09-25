@@ -6,7 +6,7 @@
     <dimen name="spacing_lg">24dp</dimen>
     <dimen name="card_corner_radius">12dp</dimen>
     <dimen name="avatar_size">56dp</dimen>
-    <dimen name="product_swatch_size">56dp</dimen>
+    <dimen name="product_image_size">56dp</dimen>
     <dimen name="store_photo_size">96dp</dimen>
     <dimen name="seasonal_image_size">100dp</dimen>
 </resources>
