@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.jojos_cup_of_jo.databinding.ItemProductBinding;
 import com.example.jojos_cup_of_jo.databinding.ItemProductSectionHeaderBinding;
 import com.example.jojos_cup_of_jo.model.Product;
+import com.example.jojos_cup_of_jo.ui.util.Money;
 import com.example.jojos_cup_of_jo.ui.util.ProductArt;
 
 import java.util.List;
-import java.util.Locale;
 
 public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -85,8 +85,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         void bind(Product product, OnAddToCartListener listener) {
             binding.productName.setText(product.getName());
             binding.productDescription.setText(product.getDescription());
-            binding.productPrice.setText(
-                    String.format(Locale.US, "$%.2f", product.getPrice()));
+            binding.productPrice.setText(Money.format(product.getPrice()));
             binding.productImage.setImageResource(ProductArt.photoRes(product.getId()));
 
             binding.addToCartButton.setOnClickListener(v -> {

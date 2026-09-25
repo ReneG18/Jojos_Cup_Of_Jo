@@ -3,6 +3,8 @@ package com.example.jojos_cup_of_jo.data;
 import com.example.jojos_cup_of_jo.model.CartItem;
 import com.example.jojos_cup_of_jo.model.Product;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -27,7 +29,8 @@ public class CartRepository {
         return INSTANCE;
     }
 
-    private static final double TAX_RATE = 0.0825;
+    private static final BigDecimal TAX_RATE = new BigDecimal("0.0825");
+    private static final int CENTS = 2;
 
     private final Map<String, CartItem> itemsByProductId = new LinkedHashMap<>();
     private final List<CartListener> listeners = new ArrayList<>();
@@ -82,20 +85,28 @@ public class CartRepository {
         return total;
     }
 
-    public double getSubtotal() {
-        double total = 0;
+    /**
+     * The three money getters below are the receipt, and they must agree: whatever the Cart screen
+     * prints for subtotal and tax has to add up to what it prints for total. That only holds if
+     * rounding to cents happens exactly once, in {@link #getTax()}, and the total is then built
+     * from already-rounded parts. Rounding each of the three independently — which is what doing
+     * this arithmetic in {@code double} amounts to — lets two values derived from the same figure
+     * round in opposite directions and puts a penny-off receipt in front of a customer.
+     */
+    public BigDecimal getSubtotal() {
+        BigDecimal total = BigDecimal.ZERO;
         for (CartItem item : itemsByProductId.values()) {
-            total += item.getLineTotal();
+            total = total.add(item.getLineTotal());
         }
-        return total;
+        return total.setScale(CENTS, RoundingMode.HALF_UP);
     }
 
-    public double getTax() {
-        return getSubtotal() * TAX_RATE;
+    public BigDecimal getTax() {
+        return getSubtotal().multiply(TAX_RATE).setScale(CENTS, RoundingMode.HALF_UP);
     }
 
-    public double getTotal() {
-        return getSubtotal() + getTax();
+    public BigDecimal getTotal() {
+        return getSubtotal().add(getTax());
     }
 
     public int confirmOrderAndGetOrderNumber() {

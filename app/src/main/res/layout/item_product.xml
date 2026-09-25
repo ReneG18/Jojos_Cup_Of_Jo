@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/spacing_md"
     android:layout_marginVertical="@dimen/spacing_sm"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardElevation="1dp"
     app:strokeWidth="0dp">
@@ -45,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                android:textColor="?attr/colorOnSurface" />
+                android:textColor="@color/coffee_espresso_900" />
 
             <TextView
                 android:id="@+id/product_description"
@@ -55,7 +56,7 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-                android:textColor="?attr/colorOnSurfaceVariant" />
+                android:textColor="@color/coffee_mocha_500" />
 
             <TextView
                 android:id="@+id/product_price"
@@ -63,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
-                android:textColor="?attr/colorPrimary" />
+                android:textColor="@color/coffee_mocha_700" />
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
@@ -73,7 +74,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_sm"
             android:text="@string/add_to_cart"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            app:rippleColor="@color/sage_green_500" />
 
     </LinearLayout>
 

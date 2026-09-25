@@ -1,11 +1,13 @@
 package com.example.jojos_cup_of_jo.model;
 
+import java.math.BigDecimal;
+
 public class Product {
 
     private final String id;
     private final String name;
     private final String description;
-    private final double price;
+    private final BigDecimal price;
     private final ProductType type;
     private final ProductCategory category;
     private final int swatchIndex;
@@ -22,7 +24,9 @@ public class Product {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.price = price;
+        // valueOf, never new BigDecimal(double): valueOf goes through Double.toString, so the
+        // literal 4.50 becomes exactly 4.5 rather than its binary expansion 4.5000000000000000277...
+        this.price = BigDecimal.valueOf(price);
         this.type = type;
         this.category = category;
         this.swatchIndex = swatchIndex;
@@ -41,7 +45,8 @@ public class Product {
         return description;
     }
 
-    public double getPrice() {
+    /** Unit price as an exact decimal. Money is never a {@code double} past this point. */
+    public BigDecimal getPrice() {
         return price;
     }
 

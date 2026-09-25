@@ -16,6 +16,8 @@
     <color name="sunflower_yellow_500">#E8A93A</color>
     <color name="sunflower_yellow_700">#C9891C</color>
     <color name="sage_green_500">#8A9B6E</color>
+    <color name="sage_green_100">#E3E8D5</color>
+    <color name="sage_green_800">#3F4B30</color>
 
     <!-- Placeholder swatch rotation for products/avatars -->
     <color name="swatch_1">@color/coffee_mocha_500</color>

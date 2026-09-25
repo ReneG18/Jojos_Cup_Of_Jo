@@ -101,15 +101,15 @@ public final class SampleDataProvider {
 
     public static List<TeamMember> getTeamMembers() {
         return new ArrayList<>(Arrays.asList(
-                new TeamMember("Jo Martinez", "Founder & Head Roaster",
+                new TeamMember("Jordan Eagle Gonzalez", "Founder & Head Roaster",
                         "“Coffee is just an excuse to slow down.”", 0),
-                new TeamMember("Alex Chen", "Head Barista",
+                new TeamMember("Navi Gonzalez", "Head Barista",
                         "“Latte art is the first thing I ever got applause for.”", 1),
-                new TeamMember("Priya Patel", "Pastry Chef",
+                new TeamMember("Rene Gonzalez", "Pastry Chef",
                         "“A good croissant should shatter, not bend.”", 2),
-                new TeamMember("Marcus Lee", "Shift Lead",
+                new TeamMember("Autumn Gonzalez", "Shift Lead",
                         "“I know every regular's order by heart.”", 3),
-                new TeamMember("Sam Okafor", "Roastery Assistant",
+                new TeamMember("Andrea Ann Gonzalez", "Roastery Assistant",
                         "“The smell of fresh beans never gets old.”", 4)
         ));
     }

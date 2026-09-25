@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/spacing_md"
     android:layout_marginVertical="@dimen/spacing_sm"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardElevation="1dp"
     app:strokeWidth="0dp">
@@ -49,21 +50,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                android:textColor="?attr/colorOnSurface" />
+                android:textColor="@color/coffee_espresso_900" />
 
             <TextView
                 android:id="@+id/member_role"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
-                android:textColor="?attr/colorPrimary" />
+                android:textColor="@color/coffee_mocha_700" />
 
             <TextView
                 android:id="@+id/member_quote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:textAppearance="@style/TextAppearance.Jojo.Quote" />
+                android:textAppearance="@style/TextAppearance.Jojo.Quote"
+                android:textColor="@color/coffee_mocha_700" />
         </LinearLayout>
 
     </LinearLayout>

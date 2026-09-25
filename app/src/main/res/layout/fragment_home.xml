@@ -52,12 +52,24 @@
                 android:text="@string/heading_about_us"
                 android:textAppearance="@style/TextAppearance.Jojo.SectionHeading" />
 
-            <TextView
-                android:id="@+id/about_us_blurb"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_sm"
-                android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardElevation="1dp"
+                app:strokeWidth="0dp">
+
+                <TextView
+                    android:id="@+id/about_us_blurb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_md"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    android:textColor="@color/coffee_espresso_900" />
+
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 
@@ -85,6 +97,7 @@
                 android:layout_marginTop="@dimen/spacing_sm"
                 android:clickable="true"
                 android:focusable="true"
+                app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardElevation="1dp"
                 app:strokeWidth="0dp">
@@ -124,7 +137,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                            android:textColor="?attr/colorOnSurface" />
+                            android:textColor="@color/coffee_espresso_900" />
 
                         <TextView
                             android:id="@+id/seasonal_drink_description"
@@ -134,7 +147,7 @@
                             android:ellipsize="end"
                             android:maxLines="2"
                             android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                            android:textColor="?attr/colorOnSurfaceVariant" />
+                            android:textColor="@color/coffee_mocha_500" />
 
                     </LinearLayout>
 
@@ -167,6 +180,7 @@
                 android:layout_marginTop="@dimen/spacing_sm"
                 android:clickable="true"
                 android:focusable="true"
+                app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardElevation="1dp"
                 app:strokeWidth="0dp">
@@ -207,7 +221,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                            android:textColor="?attr/colorOnSurface" />
+                            android:textColor="@color/coffee_espresso_900" />
 
                         <TextView
                             android:id="@+id/seasonal_merch_description"
@@ -217,7 +231,7 @@
                             android:ellipsize="end"
                             android:maxLines="2"
                             android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                            android:textColor="?attr/colorOnSurfaceVariant" />
+                            android:textColor="@color/coffee_mocha_500" />
 
                     </LinearLayout>
 
@@ -240,12 +254,24 @@
                 android:text="@string/heading_our_space"
                 android:textAppearance="@style/TextAppearance.Jojo.SectionHeading" />
 
-            <TextView
-                android:id="@+id/store_story_blurb"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_sm"
-                android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardElevation="1dp"
+                app:strokeWidth="0dp">
+
+                <TextView
+                    android:id="@+id/store_story_blurb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_md"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    android:textColor="@color/coffee_espresso_900" />
+
+            </com.google.android.material.card.MaterialCardView>
 
             <LinearLayout
                 android:layout_width="match_parent"

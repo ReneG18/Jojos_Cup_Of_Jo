@@ -45,7 +45,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_md"
-            android:text="@string/browse_menu" />
+            android:text="@string/browse_menu"
+            app:rippleColor="@color/sage_green_500" />
 
     </LinearLayout>
 
@@ -162,7 +163,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_md"
-                android:text="@string/confirm_order" />
+                android:text="@string/confirm_order"
+                app:rippleColor="@color/sage_green_500" />
 
         </LinearLayout>
 
@@ -203,7 +205,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_md"
-            android:text="@string/start_new_order" />
+            android:text="@string/start_new_order"
+            app:rippleColor="@color/sage_green_500" />
 
     </LinearLayout>
 

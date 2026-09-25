@@ -19,6 +19,7 @@ import com.example.jojos_cup_of_jo.databinding.FragmentCartBinding;
 import com.example.jojos_cup_of_jo.model.CartItem;
 import com.example.jojos_cup_of_jo.model.StoreInfo;
 import com.example.jojos_cup_of_jo.ui.TabHost;
+import com.example.jojos_cup_of_jo.ui.util.Money;
 
 import java.util.List;
 import java.util.Locale;
@@ -126,9 +127,9 @@ public class CartFragment extends Fragment {
         showOnly(binding.cartContentGroup);
         binding.cartRecyclerView.setAdapter(new CartAdapter(items, rowActionListener));
         CartRepository repository = CartRepository.getInstance();
-        binding.cartSubtotal.setText(String.format(Locale.US, "$%.2f", repository.getSubtotal()));
-        binding.cartTax.setText(String.format(Locale.US, "$%.2f", repository.getTax()));
-        binding.cartTotal.setText(String.format(Locale.US, "$%.2f", repository.getTotal()));
+        binding.cartSubtotal.setText(Money.format(repository.getSubtotal()));
+        binding.cartTax.setText(Money.format(repository.getTax()));
+        binding.cartTotal.setText(Money.format(repository.getTotal()));
         binding.cartPickupTime.setText(PickupTimeEstimator.estimateReadyTimeLabel());
     }
 

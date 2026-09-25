@@ -1,5 +1,7 @@
 package com.example.jojos_cup_of_jo.model;
 
+import java.math.BigDecimal;
+
 public class CartItem {
 
     private final Product product;
@@ -22,7 +24,7 @@ public class CartItem {
         this.quantity = quantity;
     }
 
-    public double getLineTotal() {
-        return product.getPrice() * quantity;
+    public BigDecimal getLineTotal() {
+        return product.getPrice().multiply(BigDecimal.valueOf(quantity));
     }
 }

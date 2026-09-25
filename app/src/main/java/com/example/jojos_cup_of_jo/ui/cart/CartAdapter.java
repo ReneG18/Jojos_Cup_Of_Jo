@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.jojos_cup_of_jo.databinding.ItemCartProductBinding;
 import com.example.jojos_cup_of_jo.model.CartItem;
+import com.example.jojos_cup_of_jo.ui.util.Money;
 
 import java.util.List;
 import java.util.Locale;
@@ -60,10 +61,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         void bind(CartItem item, OnCartRowActionListener listener) {
             binding.cartItemName.setText(item.getProduct().getName());
             binding.cartItemUnitPrice.setText(
-                    String.format(Locale.US, "$%.2f each", item.getProduct().getPrice()));
+                    String.format(Locale.US, "%s each", Money.format(item.getProduct().getPrice())));
             binding.cartItemQuantity.setText(String.valueOf(item.getQuantity()));
-            binding.cartItemLineTotal.setText(
-                    String.format(Locale.US, "$%.2f", item.getLineTotal()));
+            binding.cartItemLineTotal.setText(Money.format(item.getLineTotal()));
 
             binding.cartItemIncrement.setOnClickListener(v -> {
                 if (listener != null) {
