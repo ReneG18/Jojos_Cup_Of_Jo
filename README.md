@@ -1,20 +1,23 @@
 # Jojo's Cup Of Jo
 
-[Add a one or two sentence description of the app here.]
+An Android app for a coffee shop: browse the seasonal home highlights, order from the menu and
+merch shelf, meet the team, and check out from a cart with a mock pickup-time estimate and order
+total.
 
 ## Screenshots
 
-[Add screenshots or a screen recording here, e.g.:]
-
 | Home | Menu | Cart |
 | --- | --- | --- |
-| ![Home](docs/screenshots/home.png) | ![Menu](docs/screenshots/menu.png) | ![Cart](docs/screenshots/cart.png) |
+| ![Home](docs/screenshots/home_page.png) | ![Menu](docs/screenshots/menu_page.png) | ![Cart](docs/screenshots/cart_page.png) |
 
 ## Features
 
-- [ ] [Feature one]
-- [ ] [Feature two]
-- [ ] [Feature three]
+- Home tab with store hours/location, about-us and story blurbs, and a seasonal drink/merch
+  highlight card that jumps straight to that item's tab
+- Menu and Merch tabs (same product list UI) with items grouped into headed sections by category
+- Team tab with roster and avatar placeholders
+- Cart with quantity editing, tax, order total, and a "ready by" pickup time estimate
+- Real product photography, with a placeholder icon for any product without a photo yet
 
 ## Tech Stack
 
@@ -26,9 +29,9 @@
 
 ### Prerequisites
 
-- [Android Studio version]
-- JDK 25 (auto-provisioned via the foojay resolver)
-- minSdk 28
+- Android Studio compatible with AGP 9.4.1 / Gradle 9.6
+- JDK 25 (auto-provisioned via the foojay resolver; no manual install needed)
+- minSdk 28 device or emulator
 
 ### Build & Run
 
@@ -48,24 +51,15 @@ com/example/jojos_cup_of_jo/
 └── ui/                        — home/, product/, team/, cart/, util/
 ```
 
-[Expand this section if you want more detail than CLAUDE.md's architecture notes.]
+See `CLAUDE.md` for the full architecture notes (navigation, data flow, UI stack).
 
 ## Roadmap
 
-[Add planned work here, e.g.:]
-
 - [ ] Web version
 - [ ] In-store desktop POS
-- [ ] Shared server-side database (sales, inventory, employees)
-
-## Contributing
-
-[Add contribution guidelines here, or remove this section if the repo is solo/private.]
+- [ ] Shared server-side database (sales, inventory, employees) backing all three clients
+- [ ] Replace `SampleDataProvider` with a real data source
 
 ## License
 
-[Add license here.]
-
-## Contact
-
-[Add contact info here.]
+All rights reserved. No license is granted for reuse or redistribution.

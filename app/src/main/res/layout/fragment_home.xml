@@ -89,71 +89,9 @@
                 android:text="@string/heading_seasonal_drink"
                 android:textAppearance="@style/TextAppearance.Jojo.SectionHeading" />
 
-            <com.google.android.material.card.MaterialCardView
+            <include
                 android:id="@+id/seasonal_drink_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_md"
-                android:layout_marginTop="@dimen/spacing_sm"
-                android:clickable="true"
-                android:focusable="true"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="@dimen/card_corner_radius"
-                app:cardElevation="1dp"
-                app:strokeWidth="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/spacing_md">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="@dimen/seasonal_image_size"
-                        android:layout_height="@dimen/seasonal_image_size"
-                        app:cardCornerRadius="@dimen/card_corner_radius"
-                        app:cardElevation="0dp"
-                        app:strokeWidth="0dp">
-
-                        <ImageView
-                            android:id="@+id/seasonal_drink_image"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:contentDescription="@null"
-                            android:scaleType="centerCrop" />
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/spacing_md"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/seasonal_drink_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                            android:textColor="@color/coffee_espresso_900" />
-
-                        <TextView
-                            android:id="@+id/seasonal_drink_description"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:ellipsize="end"
-                            android:maxLines="2"
-                            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                            android:textColor="@color/coffee_mocha_500" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
+                layout="@layout/item_home_highlight_card" />
 
         </LinearLayout>
 
@@ -172,72 +110,9 @@
                 android:text="@string/heading_seasonal_merch"
                 android:textAppearance="@style/TextAppearance.Jojo.SectionHeading" />
 
-            <com.google.android.material.card.MaterialCardView
+            <include
                 android:id="@+id/seasonal_merch_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_md"
-                android:layout_marginTop="@dimen/spacing_sm"
-                android:clickable="true"
-                android:focusable="true"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="@dimen/card_corner_radius"
-                app:cardElevation="1dp"
-                app:strokeWidth="0dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:baselineAligned="false"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/spacing_md">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="@dimen/seasonal_image_size"
-                        android:layout_height="@dimen/seasonal_image_size"
-                        app:cardCornerRadius="@dimen/card_corner_radius"
-                        app:cardElevation="0dp"
-                        app:strokeWidth="0dp">
-
-                        <ImageView
-                            android:id="@+id/seasonal_merch_image"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:contentDescription="@null"
-                            android:scaleType="centerCrop" />
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/spacing_md"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/seasonal_merch_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                            android:textColor="@color/coffee_espresso_900" />
-
-                        <TextView
-                            android:id="@+id/seasonal_merch_description"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:ellipsize="end"
-                            android:maxLines="2"
-                            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                            android:textColor="@color/coffee_mocha_500" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
+                layout="@layout/item_home_highlight_card" />
 
         </LinearLayout>
 

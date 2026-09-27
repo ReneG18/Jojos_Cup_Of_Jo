@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.example.jojos_cup_of_jo.R;
 import com.example.jojos_cup_of_jo.data.SampleDataProvider;
 import com.example.jojos_cup_of_jo.databinding.FragmentHomeBinding;
+import com.example.jojos_cup_of_jo.databinding.ItemHomeHighlightCardBinding;
 import com.example.jojos_cup_of_jo.model.Product;
 import com.example.jojos_cup_of_jo.model.StoreInfo;
 import com.example.jojos_cup_of_jo.ui.TabHost;
@@ -49,8 +50,10 @@ public class HomeFragment extends Fragment {
         bindHoursAndLocation(storeInfo);
         bindThankYouNote(storeInfo);
 
-        bindSeasonalDrink(SampleDataProvider.getSeasonalDrink());
-        bindSeasonalMerchItem(SampleDataProvider.getSeasonalMerchItem());
+        bindHighlight(binding.sectionSeasonalDrink, binding.seasonalDrinkCard,
+                SampleDataProvider.getSeasonalDrink(), R.id.nav_menu);
+        bindHighlight(binding.sectionSeasonalMerch, binding.seasonalMerchCard,
+                SampleDataProvider.getSeasonalMerchItem(), R.id.nav_merch);
     }
 
     private void bindAboutUsAndStory(StoreInfo storeInfo) {
@@ -74,26 +77,16 @@ public class HomeFragment extends Fragment {
         binding.thankYouNote.setText(storeInfo.getThankYouNote());
     }
 
-    private void bindSeasonalDrink(@Nullable Product product) {
+    private void bindHighlight(View section, ItemHomeHighlightCardBinding card,
+                                @Nullable Product product, int tabId) {
         if (product == null) {
-            binding.sectionSeasonalDrink.setVisibility(View.GONE);
+            section.setVisibility(View.GONE);
             return;
         }
-        binding.seasonalDrinkName.setText(product.getName());
-        binding.seasonalDrinkDescription.setText(product.getDescription());
-        binding.seasonalDrinkImage.setImageResource(ProductArt.photoRes(product.getId()));
-        binding.seasonalDrinkCard.setOnClickListener(v -> requestTab(R.id.nav_menu));
-    }
-
-    private void bindSeasonalMerchItem(@Nullable Product product) {
-        if (product == null) {
-            binding.sectionSeasonalMerch.setVisibility(View.GONE);
-            return;
-        }
-        binding.seasonalMerchName.setText(product.getName());
-        binding.seasonalMerchDescription.setText(product.getDescription());
-        binding.seasonalMerchImage.setImageResource(ProductArt.photoRes(product.getId()));
-        binding.seasonalMerchCard.setOnClickListener(v -> requestTab(R.id.nav_merch));
+        card.highlightName.setText(product.getName());
+        card.highlightDescription.setText(product.getDescription());
+        card.highlightImage.setImageResource(ProductArt.photoRes(product.getId()));
+        card.getRoot().setOnClickListener(v -> requestTab(tabId));
     }
 
     private void requestTab(int tabId) {
