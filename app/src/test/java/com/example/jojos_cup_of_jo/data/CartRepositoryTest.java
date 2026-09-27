@@ -1,6 +1,7 @@
 package com.example.jojos_cup_of_jo.data;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 import com.example.jojos_cup_of_jo.model.CartItem;
 import com.example.jojos_cup_of_jo.model.Product;
@@ -126,5 +127,109 @@ public class CartRepositoryTest {
 
         assertEquals(0, repository.getItems().size());
         assertEquals(0, repository.getTotalItemCount());
+    }
+
+    @Test
+    public void removeOneItem_atQuantityGreaterThanOne_decrementsWithoutRemovingRow() {
+        CartRepository repository = new CartRepository();
+        Product product = product("a", 4.50);
+        repository.addItem(product);
+        repository.addItem(product);
+
+        repository.removeOneItem(product.getId());
+
+        List<CartItem> items = repository.getItems();
+        assertEquals(1, items.size());
+        assertEquals(1, items.get(0).getQuantity());
+    }
+
+    @Test
+    public void removeItemCompletely_removesRowRegardlessOfQuantity() {
+        CartRepository repository = new CartRepository();
+        Product product = product("a", 4.50);
+        repository.addItem(product);
+        repository.addItem(product);
+        repository.addItem(product);
+
+        repository.removeItemCompletely(product.getId());
+
+        assertEquals(0, repository.getItems().size());
+        assertEquals(0, repository.getTotalItemCount());
+    }
+
+    @Test
+    public void clear_removesAllItemsRegardlessOfCount() {
+        CartRepository repository = new CartRepository();
+        repository.addItem(product("a", 4.50));
+        repository.addItem(product("b", 3.25));
+
+        repository.clear();
+
+        assertEquals(0, repository.getItems().size());
+        assertEquals(0, repository.getTotalItemCount());
+    }
+
+    @Test
+    public void confirmOrderAndGetOrderNumber_startsAt1001AndIncrementsPerCall() {
+        CartRepository repository = new CartRepository();
+
+        int first = repository.confirmOrderAndGetOrderNumber();
+        int second = repository.confirmOrderAndGetOrderNumber();
+
+        assertEquals(1001, first);
+        assertEquals(1002, second);
+    }
+
+    @Test
+    public void confirmOrderAndGetOrderNumber_clearsTheCartAsASideEffect() {
+        CartRepository repository = new CartRepository();
+        repository.addItem(product("a", 4.50));
+
+        repository.confirmOrderAndGetOrderNumber();
+
+        assertEquals(0, repository.getItems().size());
+    }
+
+    @Test
+    public void addListener_notifiesOnCartChange() {
+        CartRepository repository = new CartRepository();
+        int[] notificationCount = {0};
+        repository.addListener(() -> notificationCount[0]++);
+
+        repository.addItem(product("a", 4.50));
+
+        assertEquals(1, notificationCount[0]);
+    }
+
+    @Test
+    public void removeListener_stopsReceivingNotifications() {
+        CartRepository repository = new CartRepository();
+        int[] notificationCount = {0};
+        CartRepository.CartListener listener = () -> notificationCount[0]++;
+        repository.addListener(listener);
+        repository.addItem(product("a", 4.50));
+
+        repository.removeListener(listener);
+        repository.addItem(product("b", 3.25));
+
+        assertEquals(1, notificationCount[0]);
+    }
+
+    @Test
+    public void getInstance_alwaysReturnsSameInstance() {
+        assertSame(CartRepository.getInstance(), CartRepository.getInstance());
+    }
+
+    @Test
+    public void getTotalItemCount_sumsQuantitiesAcrossDistinctProducts() {
+        CartRepository repository = new CartRepository();
+        Product productA = product("a", 4.50);
+        Product productB = product("b", 3.25);
+
+        repository.addItem(productA);
+        repository.addItem(productB);
+        repository.addItem(productB);
+
+        assertEquals(3, repository.getTotalItemCount());
     }
 }
